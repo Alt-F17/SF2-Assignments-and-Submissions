@@ -1,17 +1,3 @@
-# N = num_villages
-# Distinct point straight road: list
-# integer position = tuple list ^^
-# equally distant = in A & in B
-# neighbourhood has a size
-# neighbourhood size = rightmost/max()/ - leftmost/min()/
-# Goal: find min sized neighourhood
-# 
-# First input = num of inputs (range for loop)
-# 
-# Next lines: village coordinates
-# 
-# All inputs placed in a list, then sorted
-
 input_count = int(input())
 
 villages = []
