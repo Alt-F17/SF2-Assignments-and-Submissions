@@ -1,3 +1,5 @@
+import loguru
+
 ### SETUP
 stream_num = int(input()) # INPUT: number of streams
 streams = []
