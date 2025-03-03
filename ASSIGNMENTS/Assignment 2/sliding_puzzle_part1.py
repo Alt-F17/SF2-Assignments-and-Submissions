@@ -58,6 +58,9 @@ def displayBoard(board):
 
 def nextMove(board):
     displayBoard(board)
+    if set(tileLabels(len(board))) == set([tile for row in board for tile in row]): # Win check
+        print('Congratulations! You solved the puzzle!')
+        exit()
     valid_moves = []
     empty_tile = findEmptyTile(board)
 
@@ -76,9 +79,31 @@ def nextMove(board):
     
     if next_move not in valid_moves:
         print('Invalid move. Try again.')
-        time.sleep(1) # Just so the user can read that the input is incorrect. Does involve importing time.
+        time.sleep(1) # Just so the user can read that the input is incorrect. Note that this does involve importing time.
         nextMove(board)
-    
+    else:
+        makeMove(board, next_move)
+
+def makeMove(board, move): # works, verified, disgusting, but most efficient way...
+    empty_tile = findEmptyTile(board)
+    if move == 'S':
+        board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]-1][empty_tile[1]] = board[empty_tile[0]-1][empty_tile[1]], board[empty_tile[0]][empty_tile[1]]
+    elif move == 'W':
+        board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]+1][empty_tile[1]] = board[empty_tile[0]+1][empty_tile[1]], board[empty_tile[0]][empty_tile[1]]
+    elif move == 'D':
+        board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]][empty_tile[1]-1] = board[empty_tile[0]][empty_tile[1]-1], board[empty_tile[0]][empty_tile[1]]
+    elif move == 'A':
+        board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]][empty_tile[1]+1] = board[empty_tile[0]][empty_tile[1]+1], board[empty_tile[0]][empty_tile[1]]
+    nextMove(board)    
+
+# Main Program:
+
+print('| Welcome to Sliding Puzzle!')
+print('| Here are some quick instructions:')
+print('| Use WASD to move the empty tile.')
+print('| Enter QUIT to exit the game.')
+input('| Press Enter to continue...')
+print()
 n = int(input('Grid Size: '))
 board = getNewPuzzle(n)
 while True:
