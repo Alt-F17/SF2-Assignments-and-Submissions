@@ -2,7 +2,6 @@
 # 2431927
 
 import random as r
-import time
 
 def tileLabels(n): # works, verified
     tiles = []
@@ -79,7 +78,6 @@ def nextMove(board):
     
     if next_move not in valid_moves:
         print('Invalid move. Try again.')
-        time.sleep(1) # Just so the user can read that the input is incorrect. Note that this does involve importing time.
         nextMove(board)
     else:
         makeMove(board, next_move)
