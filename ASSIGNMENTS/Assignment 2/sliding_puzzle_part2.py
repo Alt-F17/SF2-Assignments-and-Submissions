@@ -6,7 +6,7 @@ import random as r
 def tileLabels(n): # works, verified
     tiles = []
     for num in range(1,n**2):
-        tiles.append(str(num))
+        tiles.append(str(num) + ' ' if len(str(num)) == 1 else str(num))
     tiles.append('  ')
     return tiles
 
@@ -55,8 +55,9 @@ def displayBoard(board):
     draw_board += horizontal_div
     print(draw_board.format(*labels))
 
-def nextMove(board):
+def nextMove(board, moves, max_moves):
     displayBoard(board)
+    print(f"Moves: {moves}/{max_moves}")
     valid_moves = []
     empty_tile = findEmptyTile(board)
 
@@ -75,11 +76,12 @@ def nextMove(board):
     
     if next_move not in valid_moves:
         print('Invalid move. Try again.')
-        nextMove(board)
+        return moves
     else:
-        makeMove(board, next_move)
+        return makeMove(board, next_move, moves)
+    
 
-def makeMove(board, move): # works, verified, disgusting, but most efficient way...
+def makeMove(board, move, moves): # works, verified, disgusting, but most efficient way...
     empty_tile = findEmptyTile(board)
     if move == 'S':
         board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]-1][empty_tile[1]] = board[empty_tile[0]-1][empty_tile[1]], board[empty_tile[0]][empty_tile[1]]
@@ -89,7 +91,29 @@ def makeMove(board, move): # works, verified, disgusting, but most efficient way
         board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]][empty_tile[1]-1] = board[empty_tile[0]][empty_tile[1]-1], board[empty_tile[0]][empty_tile[1]]
     elif move == 'A':
         board[empty_tile[0]][empty_tile[1]], board[empty_tile[0]][empty_tile[1]+1] = board[empty_tile[0]][empty_tile[1]+1], board[empty_tile[0]][empty_tile[1]]
-    nextMove(board)    
+    return moves + 1
+
+
+def getSolvedBoard(n):
+    tiles = []
+    for num in range(1, n**2):
+        if len(str(num)) == 1:
+            tiles.append(str(num) + ' ')
+        else:
+            tiles.append(str(num))
+    tiles.append('  ')
+    
+    board = []
+    start_index = 0
+    for _ in range(n):
+        board.append(tiles[start_index:start_index+n])
+        start_index += n
+    return board
+
+def isWinner(board):
+    n = len(board)
+    solved_board = getSolvedBoard(n)
+    return board == solved_board
 
 # Main Program:
 
@@ -101,5 +125,23 @@ input('| Press Enter to continue...')
 print()
 n = int(input('Grid Size: '))
 board = getNewPuzzle(n)
-while True:
-    nextMove(board)
+moves = 0
+max_moves = 31 if n == 3 else 80 if n == 4 else 100  # Default for other sizes
+
+while moves < max_moves:
+    if isWinner(board):
+        displayBoard(board)
+        print("Congratulations! You solved the puzzle!")
+        exit()
+    
+    moves = nextMove(board, moves, max_moves)
+    
+    if isWinner(board):
+        displayBoard(board)
+        print("Congratulations! You solved the puzzle!")
+        exit()
+        
+else:
+    displayBoard(board)
+    print("Best of luck next time!")
+    exit()
