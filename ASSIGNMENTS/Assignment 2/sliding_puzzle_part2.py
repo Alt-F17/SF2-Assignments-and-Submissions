@@ -126,7 +126,7 @@ print()
 n = int(input('Grid Size: '))
 board = getNewPuzzle(n)
 moves = 0
-max_moves = 31 if n == 3 else 80 if n == 4 else 100  # Default for other sizes
+max_moves = 31 if n == 3 else 80 if n == 4 else 100  # Default for other sizes since no other values were given
 
 while moves < max_moves:
     if isWinner(board):
