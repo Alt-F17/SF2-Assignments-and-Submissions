@@ -57,9 +57,6 @@ def displayBoard(board):
 
 def nextMove(board):
     displayBoard(board)
-    if set(tileLabels(len(board))) == set([tile for row in board for tile in row]): # Win check
-        print('Congratulations! You solved the puzzle!')
-        exit()
     valid_moves = []
     empty_tile = findEmptyTile(board)
 
