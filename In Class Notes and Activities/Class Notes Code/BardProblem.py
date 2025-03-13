@@ -27,27 +27,135 @@
 
 #     all villagers that know all songs, including the vard, one integer per line in ascending order
 
+if input("Do you want to use lists (L) or Sets (S): ").lower() == "l":
+    print("[Using Lists] Input:")
+    n = int(input())
+    e = int(input())
+    songs_known = [0] * (n + 1) 
+    total_songs = 0
+
+    for _ in range(e):
+        attendees = [int(x) for x in input().split()]
+        num_attendees = attendees[0]
+        attendees = attendees[1:num_attendees+1]
+        
+        if 1 in attendees:
+            total_songs += 1
+            for villager in attendees:
+                songs_known[villager] += 1
+        else:
+            max_songs = max(songs_known[villager] for villager in attendees)
+            for villager in attendees:
+                songs_known[villager] = max_songs
+
+    print("\nOutput Using Lists:")
+    for villager in range(1, n + 1):
+        if songs_known[villager] == total_songs:
+            print(villager)
+
+# Was told to also do it with sets... Here is that:
+else:
+    print("[Using Sets] Input:")
+    n = int(input())
+    e = int(input())
+    songs_known = set()
+    total_songs = 0
+
+    for _ in range(e):
+        attendees = [int(x) for x in input().split()]
+        num_attendees = attendees[0]
+        attendees = set(attendees[1:num_attendees+1])
+        
+        if 1 in attendees:
+            total_songs += 1
+            songs_known.update(attendees)
+        else:
+            songs_known = songs_known.intersection(attendees)
+
+    print("\nOutput Using Sets:")
+    for villager in range(1, n + 1):
+        if villager in songs_known:
+            print(villager)
 
 
-n = int(input())
-e = int(input())
-songs_known = [0] * (n + 1) 
-total_songs = 0
-
-for _ in range(e):
-    attendees = [int(x) for x in input().split()]
-    num_attendees = attendees[0]
-    attendees = attendees[1:num_attendees+1]
+"""
+Edge Cases:
+Input:
+5 
+3 
+3 1 2 3
+2 1 2
+3 1 2 3
+Output:
+1
+2
+3
     
-    if 1 in attendees:
-        total_songs += 1
-        for villager in attendees:
-            songs_known[villager] += 1
-    else:
-        max_songs = max(songs_known[villager] for villager in attendees)
-        for villager in attendees:
-            songs_known[villager] = max_songs
-
-for villager in range(1, n + 1):
-    if songs_known[villager] == total_songs:
-        print(villager)
+Input:
+5
+3
+3 1 2 3
+2 2 3
+3 1 2 4
+Output:
+1
+2
+3
+    
+Input:
+5
+4
+2 1 2
+3 2 3 4
+2 3 5
+3 4 5 1
+Output:
+1
+4
+5
+    
+Input:
+5
+3
+2 1 2
+2 1 3
+2 1 4
+Output:
+1
+    
+Input:
+5
+5
+1 1
+1 1
+1 1
+1 1
+1 1
+Output:
+1
+    
+Input:
+5
+1
+5 1 2 3 4 5
+Output:
+1
+2
+3
+4
+5
+    
+Input:
+7
+5
+3 1 2 3
+3 3 4 5
+3 1 5 6
+3 2 6 7
+3 4 5 7
+Output:
+1
+4
+5
+7
+"""
