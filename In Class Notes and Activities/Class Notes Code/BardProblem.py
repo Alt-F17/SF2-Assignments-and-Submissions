@@ -26,57 +26,67 @@
 # OUTPUT: 
 
 #     all villagers that know all songs, including the vard, one integer per line in ascending order
+while 1:
+    logic_type = input("Would you like to use lists or sets? (L/S): ").lower()
+    if logic_type == "l": # I love walrus operators omg
+        print("[Using Lists] Input:")
+        n = int(input())
+        e = int(input())
+        songs_known = [0] * (n + 1) 
+        total_songs = 0
 
-if input("Do you want to use lists (L) or Sets (S): ").lower() == "l":
-    print("[Using Lists] Input:")
-    n = int(input())
-    e = int(input())
-    songs_known = [0] * (n + 1) 
-    total_songs = 0
+        for _ in range(e):
+            attendees = [int(x) for x in input().split()]
+            num_attendees = attendees[0]
+            attendees = attendees[1:num_attendees+1]
+            
+            if 1 in attendees:
+                total_songs += 1
+                for villager in attendees:
+                    songs_known[villager] += 1
+            else:
+                max_songs = max(songs_known[villager] for villager in attendees)
+                for villager in attendees:
+                    songs_known[villager] = max_songs
 
-    for _ in range(e):
-        attendees = [int(x) for x in input().split()]
-        num_attendees = attendees[0]
-        attendees = attendees[1:num_attendees+1]
-        
-        if 1 in attendees:
-            total_songs += 1
-            for villager in attendees:
-                songs_known[villager] += 1
-        else:
-            max_songs = max(songs_known[villager] for villager in attendees)
-            for villager in attendees:
-                songs_known[villager] = max_songs
+        print("\nOutput Using Lists:")
+        for villager in range(1, n + 1):
+            if songs_known[villager] == total_songs:
+                print(villager)
+        exit()        
 
-    print("\nOutput Using Lists:")
-    for villager in range(1, n + 1):
-        if songs_known[villager] == total_songs:
-            print(villager)
+    # Was told to also do it with sets... Here is that:
+    elif logic_type == "s":
+        print("[Using Sets] Input:")
+        n = int(input())
+        e = int(input())
+        songs_known = {}  # Dict to track songs known by each villager
+        total_songs = 0
 
-# Was told to also do it with sets... Here is that:
-else:
-    print("[Using Sets] Input:")
-    n = int(input())
-    e = int(input())
-    songs_known = set()
-    total_songs = 0
+        for _ in range(e):
+            attendees = [int(x) for x in input().split()]
+            num_attendees = attendees[0]
+            attendees = set(attendees[1:num_attendees+1])
+            
+            if 1 in attendees:
+                total_songs += 1
+                for villager in attendees:
+                    songs_known[villager] = songs_known.get(villager, 0) + 1
+            else:
+                max_songs = max((songs_known.get(v, 0) for v in attendees), default=0)
+                for villager in attendees:
+                    songs_known[villager] = max_songs
 
-    for _ in range(e):
-        attendees = [int(x) for x in input().split()]
-        num_attendees = attendees[0]
-        attendees = set(attendees[1:num_attendees+1])
-        
-        if 1 in attendees:
-            total_songs += 1
-            songs_known.update(attendees)
-        else:
-            songs_known = songs_known.intersection(attendees)
+        print("\nOutput Using Sets:")
 
-    print("\nOutput Using Sets:")
-    for villager in range(1, n + 1):
-        if villager in songs_known:
-            print(villager)
+        for villager in range(1, n + 1):
+            if songs_known.get(villager, 0) == total_songs:
+                print(villager)
+                
+        exit()
 
+    else:
+        print("Invalid input. Please enter 'L' or 'S'")
 
 """
 Edge Cases:
