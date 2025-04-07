@@ -9,14 +9,14 @@ import math
 # Set it to a specific time
 # Set end time to tomorrow at 5:50 AM
 today = datetime.datetime.now()
-end_time = datetime.datetime(today.year, today.month, today.day, 13, 25, 0)
+end_time = datetime.datetime(today.year, today.month, today.day, 11, 10, 0)
 
 # Set start time to when the script starts
 start_time = datetime.datetime.now()
 total_duration = (end_time - start_time).total_seconds()
 
 # Initialize variables
-total_tasks = 15
+total_tasks = 1
 completed_tasks = 0
 
 def get_user_input(completed_tasks):
@@ -24,11 +24,19 @@ def get_user_input(completed_tasks):
     while True:
         try:
             user_input = input()
+            if user_input.split()[0] == "-total":
+                total_tasks = int(user_input.split()[1])
+                print(f"Total tasks set to {total_tasks}")
+            if user_input.split()[0] == "-end":
+                end_time = datetime.datetime(today.year, today.month, today.day, user_input.split()[1], user_input.split()[2], 0)
+                print(f"End time set to {end_time}")
             if user_input.strip():
                 new_value = int(user_input)
                 if 0 <= new_value <= total_tasks:
                     return new_value
         except ValueError:
+            pass
+        except any as e:
             pass
         except EOFError:
             return completed_tasks
