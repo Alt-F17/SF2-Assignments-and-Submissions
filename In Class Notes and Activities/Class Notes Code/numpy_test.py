@@ -100,3 +100,24 @@ arr > 30
 # output: array([False,  True,  True,  True])
 
 # NOTE: comparing two arrays of different sizes will return an error.
+
+
+
+
+
+
+
+
+
+
+
+# dictionary.update() does not return anything, it just updates the dictionary. How? 
+# It does not return a new dictionary, it just updates the existing one.
+# So, if you want to update a dictionary with another dictionary, you can use the update() method.
+
+s1 = {1: 2, 3: 4}
+s2 = {5: 6, 7: 8}
+s1.update(s2)
+# output: {1: 2, 3: 4, 5: 6, 7: 8}
+
+# same for sets? 

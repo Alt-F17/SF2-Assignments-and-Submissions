@@ -1,0 +1,10 @@
+John,Smith,85,92,78
+Emma,Johnson,76,88,94
+Michael,Williams,92,79,85
+Sophia,Brown,88,91,87
+James,Jones,75,82,79
+Olivia,Garcia,94,88,92
+William,Miller,82,85,89
+Ava,Davis,91,77,84
+Alexander,Rodriguez,79,86,90
+Charlotte,Wilson,87,93,81
