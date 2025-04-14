@@ -1,47 +1,3 @@
-
-# Original Code to plot a single graph, contains the formula to be submitted in the lab report.
-'''
-import matplotlib.pyplot as plt
-
-# Constants
-g = 9.81 # m/s^2
-m = 0.88/1000 # kg # Per Coffee Cup
-c = 1.1109991310477379 # drag coefficient
-A = 141.591/10000 # m^2
-rho = 1.2 # kg/m^3
-h = 0.0001 # s # time step
-t_start = 0
-v = 0 # m/s
-y = 1.49 # m
-t_final = 2 # s # Arbitrary
-
-# Initialize lists to store values
-t_values = [t_start]
-v_values = [v]
-y_values = [y]
-
-# Euler's method
-while t_values[-1] < t_final:
-    v = v - h*g + h*(rho*c*A*v**2)/(2*m)
-    y = y + h*v
-    # Break the loop if y becomes negative
-    if y < 0:
-        break
-    t_values.append(t_values[-1] + h)
-    v_values.append(v)
-    y_values.append(y)
-
-# Plot the results
-plt.plot(t_values, y_values)
-plt.xlabel('Time (s)')
-plt.ylabel('Height (m)')
-plt.title('Height of a falling coffee filter')
-print(f'Terminal velocity: {v} m/s') # Terminal Velocity
-plt.text(0.75, 0, f'Terminal velocity: {v} m/s', fontsize=8, ha='center')
-plt.show()
-'''
-
-# Improved code to plot all runs/drops to compare them to their experimental counterparts.
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -274,4 +230,4 @@ def analyze_coffee_filter_data(csv_file):
 
 # Execute the analysis
 if __name__ == "__main__":
-    analyze_coffee_filter_data(r"C:\Users\felix\OneDrive - Dawson College\Class Files\SF2 - Coding\SF2-Assignments-and-Submissions\sandbox\clean_data_multiple_filter.csv")
+    analyze_coffee_filter_data(r"C:\Users\felix\OneDrive - Dawson College\Class Files\SF2 - Coding\SF2-Assignments-and-Submissions\sandbox\clean_data_multiple_filter_j6.csv")

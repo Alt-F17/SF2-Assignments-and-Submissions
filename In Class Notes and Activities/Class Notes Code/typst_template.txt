@@ -1,0 +1,94 @@
+#show heading: set text(size: 14pt, weight: "bold")
+#set par(justify: true)
+#set page(margin: 1in)
+
+// Title
+#align(center)[
+  #text(size: 16pt, weight: "bold")[Lab Report: Coffee Filter Experiment]
+]
+
+// I. Abstract
+= I. Abstract
+#lorem(80) // Replace with your abstract content
+
+// II. Introduction
+= II. Introduction
+Objective: #lorem(20) // Replace with your objective statement
+
+Fundamental physics theory: #lorem(50) // Replace with your theory summary
+
+// III. Coffee Filters
+= III. Coffee Filters
+== Data Collection Process
+#lorem(40) // Replace with description of data collection using coffee filters
+
+== Data Presentation and Processing
+Data was processed using Pandas as follows:
+#[
+  ```python
+  // Insert your Pandas code snippet here
+  import pandas as pd
+  # Example placeholder
+  data = pd.read_csv("trials.csv")
+  terminal_speeds = data["speed"].mean()
+    print(terminal_speeds)
+```
+]
+Terminal speeds obtained: ____ m/s // Fill in your results
+
+== Drag Coefficient Calculation
+Drag coefficient calculated using:
+$ C_d = (2 * m * g) / (rho * A * v_t^2) $
+Where:
+
+$m = ____$ kg (mass of filter, source: ____)
+$g = 9.81$ m/s² (gravitational acceleration)
+$rho = ____$ kg/m³ (air density, source: ____)
+$A = ____$ m² (area of filter, source: ____)
+$v_t = ____$ m/s (terminal speed from data) Resulting $C_d = ____$ // Fill in your calculated value
+// IV. Simulation
+= IV. Simulation
+== Summary of Euler’s Method
+#lorem(30) // Replace with Euler’s method summary
+
+== Simulation Description
+Simulation implemented as follows:
+#[ ```python
+// Insert your simulation code snippet here
+# Example placeholder
+def euler_step(t, v, dt):
+    a = g - (k * v * v) / m
+    return v + a * dt
+    ```
+]
+]
+#lorem(40) // Replace with detailed description
+
+== Simulated Graph
+Graph comparing simulation to real trial #____:
+#[
+// Placeholder for graph description or code to generate it
+Simulated terminal speed: ____ m/s vs. Real: ____ m/s
+]
+
+// V. Discussion
+= V. Discussion
+Comparison of drag coefficient ($C_d = ____$) with external source (e.g., $C_d = ____$ from ____): #lorem(30) // Fill in comparison
+
+Simulation accuracy: #lorem(40) // Discuss how well it matches real life
+
+Interesting factors or improvements: #lorem(30) // Add your comments
+
+// VI. Appendix
+= VI. Appendix
+Complete simulation code:
+#[ ```python
+// Insert your full simulation code here
+# Example placeholder
+import numpy as np
+t = np.arange(0, 10, 0.1)
+v = [0]
+for i in range(len(t)-1):
+    v.append(euler_step(t[i], v[-1], 0.1))
+    ```
+]
