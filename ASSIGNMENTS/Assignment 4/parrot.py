@@ -3,9 +3,10 @@ from Omnivore import Omnivore
 from Pet import Pet
 
 class Parrot(Bird, Omnivore, Pet):
-    def __init__(self, legs=4, wings=2):
+    def __init__(self, legs=2, wings=2, color='yellow'):
         super().__init__(legs=legs)
         self.wings = wings
+        self.color = color
 
     def __repr__(self) -> str:
         bird_repr = Bird.__repr__(self)
