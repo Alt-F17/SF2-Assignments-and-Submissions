@@ -4,7 +4,7 @@ import sys
 import threading
 
 today = datetime.datetime.now()
-end_time = datetime.datetime(today.year, today.month, today.day, 11, 10, 0)
+end_time = datetime.datetime(today.year, today.month, today.day, 11, 30, 0)
 
 start_time = datetime.datetime.now()
 total_duration = (end_time - start_time).total_seconds()
