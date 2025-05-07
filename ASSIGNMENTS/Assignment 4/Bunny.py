@@ -4,19 +4,20 @@ from Pet import Pet
 
 class Bunny(Mammal, Herbivore, Pet):
     def __init__(self, legs=4, ears=2):
-        # NOTE: PRO TIP: MRO (Method Resolution Order) determines which __init__ gets called.
-        # Here, use Mammal's __init__ by calling it first.
+        # NOTE: MRO (Method Resolution Order) determines which __init__ gets called.
+        # Here, Mammal's __init__ will be called first.
         super().__init__(legs=legs)
         self.ears = ears
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         mammal_repr = Mammal.__repr__(self)
         herbivore_repr = Herbivore.__repr__(self)
         pet_repr = Pet.__repr__(self)
         return f"{mammal_repr}\nSpecies: Bunny\n{pet_repr}\n\n{herbivore_repr}"
 
     def reproduce(self):
-        return Mammal.reproduce(self) + "Bunnies can produce multiple litters per year, potentially having 3-8 kits per litter."
+        Mammal.reproduce(self)
+        print("Bunnies can produce multiple litters per year, potentially having 3-8 kits per litter.")
 
     def eat(self):
         Herbivore.eat(self)
@@ -28,5 +29,5 @@ class Bunny(Mammal, Herbivore, Pet):
     def sleep(self):
         print("Bunnies as nocturnal animals, typically sleep around 12 to 14 hours a day in short, intermittent periods.")
 
-    def pet(self):
+    def pet(self) -> str:
         Pet.pet(self)

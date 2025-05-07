@@ -3,7 +3,7 @@ class Heterotroph:
         legs = legs
         self.fins = fins
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "This organism is a heterotroph. It is unable to produce its own food, so it eats other organisms."
 
     def eat(self):

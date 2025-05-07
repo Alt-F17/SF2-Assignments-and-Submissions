@@ -7,7 +7,7 @@ class Dog(Mammal, Omnivore, Pet):
         super().__init__(legs=legs)
         self.ears = ears
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         mammal_repr = Mammal.__repr__(self)
         omnivore_repr = Omnivore.__repr__(self)
         pet_repr = Pet.__repr__(self)
@@ -26,5 +26,5 @@ class Dog(Mammal, Omnivore, Pet):
     def sleep(self):
         print("Dogs, like humans, sleep in cycles and can sometimes dream.")
 
-    def pet(self):
+    def pet(self) -> str:
         Pet.pet(self)

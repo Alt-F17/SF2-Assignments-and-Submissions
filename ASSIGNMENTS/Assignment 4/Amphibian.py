@@ -1,8 +1,8 @@
 from Animal import Animal
 
 class Amphibian(Animal):
-    def __repr__(self):
-        return super().__repr__() + "\nClass: Amphibian"
+    def __repr__(self) -> str:
+        return f"{super().__repr__()}\nClass: Amphibian"
 
     def reproduce(self):
-        return super().reproduce() + " Amphibians reproduce by laying soft eggs in the water."
+        print("Members of this kingdom reproduce by finding a mate of the same species. Amphibians reproduce by laying soft eggs in the water.")
