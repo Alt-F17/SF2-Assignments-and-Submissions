@@ -1,5 +1,5 @@
 class Animal:
-    def __init__(self, legs=0, fins=0, wings=0, ):
+    def __init__(self, legs=0, fins=0, wings=0):
         self.legs = legs
         self.fins = fins
         self.wings = wings
