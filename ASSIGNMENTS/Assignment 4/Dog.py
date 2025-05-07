@@ -13,17 +13,16 @@ class Dog(Mammal, Omnivore, Pet):
         pet_repr = Pet.__repr__(self)
         return f"{mammal_repr}\nSpecies: Dog\n{pet_repr}\n\n{omnivore_repr}"
 
-    def reproduce(self):
-        Mammal.reproduce(self)
-        print("Dogs can have up to 12 puppies per litter, depending on the breed and size of the dog.")
+    def reproduce(self) -> str:
+        return Mammal.reproduce(self) + " Dogs can have up to 12 puppies per litter, depending on the breed and size of the dog."
 
-    def eat(self):
+    def eat(self) -> None:
         Omnivore.eat(self)
 
-    def move(self):
+    def move(self) -> None:
         print("I move by running, pretty fast too!")
 
-    def sleep(self):
+    def sleep(self) -> None:
         print("Dogs, like humans, sleep in cycles and can sometimes dream.")
 
     def pet(self) -> str:
