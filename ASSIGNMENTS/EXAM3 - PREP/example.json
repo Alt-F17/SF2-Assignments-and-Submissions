@@ -1,0 +1,36 @@
+{
+    "\\main": {
+        "\\photos": {
+            "\\Summer Trip": {
+                "beach.png" : 2400,
+                "mountain.png" : 1200,
+                "lasagna.png" : 2000
+            },
+            "\\Winter Trip": {
+                "cabin.png" : 2000,
+                "skiing.png" : 1800
+            }
+        },
+        "\\Homework": {
+            "\\Math": {
+                "Algebra.pdf" : 1000,
+                "Statistics.txt" : 1300,
+                "\\Physics" : {
+                    "Mechanics.pdf" : 2000,
+                    "Electromagnetism.txt" : 2200
+                }
+            }
+        }
+    },
+    "\\backup": {
+        "\\photos" : {
+            "\\Summer Trip": {
+                "beach.png" : 2400,
+                "mountain.png" : 1200,
+                "city.mp4" : 5800,
+                "forest.mp4" : 5600,
+                "lasagna.png" : 2000
+            }
+        }
+    }
+}

@@ -23,7 +23,7 @@ REPORT_INTERVAL = 100  # Report progress every 10 seconds
 
 @njit(cache=True)
 def is_position_prime(prime, position):
-    return str(position) in str(prime)
+    return sympy.isprime(position)
 
 @njit(cache=True, parallel=True)
 def cpu_find_position_prime(start, step, candidates, positions, num_to_check):
@@ -54,45 +54,7 @@ def is_prime_device(n):
 
 @cuda.jit(device=True)
 def is_position_prime_device(prime, position):
-    # initialization vars
-    prime_str = 0
-    pos_str = 0
-    prime_len = 0
-    pos_len = 0
-    
-    temp_prime = prime
-    while temp_prime > 0:
-        prime_str = prime_str * 10 + (temp_prime % 10)
-        temp_prime //= 10
-        prime_len += 1
-
-    temp_pos = position
-    while temp_pos > 0:
-        pos_str = pos_str * 10 + (temp_pos % 10)
-        temp_pos //= 10
-        pos_len += 1
-
-    temp_prime = prime_str
-    prime_str = 0
-    while temp_prime > 0:
-        prime_str = prime_str * 10 + (temp_prime % 10)
-        temp_prime //= 10
-    
-    temp_pos = pos_str
-    pos_str = 0
-    while temp_pos > 0:
-        pos_str = pos_str * 10 + (temp_pos % 10)
-        temp_pos //= 10
-    for i in range(prime_len - pos_len + 1):
-        match = True
-        for j in range(pos_len):
-            if (prime_str // (10**(prime_len-i-j-1))) % 10 != (pos_str // (10**(pos_len-j-1))) % 10:
-                match = False
-                break
-        if match:
-            return True
-    
-    return False
+    return is_prime_device(position)
 
 @cuda.jit
 def find_position_primes_kernel(start, start_pos, step, results, positions):

@@ -1,0 +1,67 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+def get_nth_prime(driver, n):
+    url = "https://t5k.org/nthprime/index.php#nth"
+    driver.get(url)
+    
+    try:
+        # Locate the input field for 'n' and submit button
+        input_field = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "n"))
+        )
+        submit_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "input.btn.btn-primary"))
+        )
+        
+        # Clear the input field and enter the value
+        input_field.clear()
+        input_field.send_keys(str(n))
+        
+        # Submit the form
+        submit_button.click()
+        
+        # Wait for the result table to appear
+        result_table = WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table[bordercolor='#0099cc']"))
+        )
+        
+        # Extract the result text
+        result_text = result_table.find_element(By.TAG_NAME, "b").text.strip()
+        return result_text
+    
+    except Exception as e:
+        return f"Error fetching data for n={n}: {e}"
+
+def main():
+    # Set up Chrome options for headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    # Initialize the WebDriver
+    driver = webdriver.Chrome(options=chrome_options)
+    
+    try:
+        results = []
+        for n in range(1, 1001):
+            result = get_nth_prime(driver, n)
+            results.append(result)
+            print(f"Processed n={n}: {result}")
+            time.sleep(1)  # Respectful delay to avoid overwhelming the server
+        
+        # Save results to a file
+        with open('nth_prime_results.txt', 'w') as f:
+            for result in results:
+                f.write(result + '\n')
+    
+    finally:
+        driver.quit()
+
+if __name__ == "__main__":
+    main()
