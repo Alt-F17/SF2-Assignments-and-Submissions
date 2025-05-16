@@ -1,0 +1,21 @@
+- Coding comps
+- **Interships**
+- FIND JOBS IN THE FIELD
+- Networking
+- Volunteer at a local non-profit &&| or hackathon &&| IT deps at schools
+- Comptia certs
+- HTB certs
+- DSCC
+- Startups
+- LinkedIn
+- IG
+- Personal Website / Portfolio (3JS)
+- Attend tech meetups and conferences
+- Contribute to open-source projects
+- Build a GitHub profile with quality repositories
+- Practice coding challenges on platforms like LeetCode or HackerRank
+- Explore machine learning and AI projects
+- Create a blog to share coding knowledge
+- Build a chatbot using Python or JavaScript [X]
+- Explore blockchain technology and smart contracts
+- Learn about Internet of Things (IoT) development
